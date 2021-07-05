@@ -36,11 +36,13 @@ class ImageEditorPro extends StatefulWidget {
   final Color appBarColor;
   final Color bottomBarColor;
   final CallBackImageFile callBackImageFile;
+  final File imageFileShot;
 
   ImageEditorPro({
     this.appBarColor,
     this.bottomBarColor,
     this.callBackImageFile,
+    this.imageFileShot,
   });
 
   @override
@@ -101,6 +103,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
     inputTextController.clear();
     howmuchwidgetis = 0;
     // TODO: implement initState
+    _image = widget.imageFileShot ?? null;
     super.initState();
   }
 
@@ -421,12 +424,12 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                     inputTextController.clear();
                     Navigator.pop(context);
                   },
-                  child:  Text("OK")),
+                  child: Text("OK")),
               FlatButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child:  Text("Cancle"))
+                  child: Text("Cancle"))
             ],
             content: Container(
               width: double.infinity,
@@ -634,9 +637,7 @@ class _SignatState extends State<Signat> {
   @override
   void initState() {
     super.initState();
-    _controller.addListener((){
-
-    });
+    _controller.addListener(() {});
   }
 
   @override
