@@ -433,7 +433,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
               child: TextFormField(
                 controller: inputTextController,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(top: 5, left: 2),
+                  contentPadding: EdgeInsets.only(top: 5),
                   border: InputBorder.none,
                 ),
                 onChanged: (value) {
