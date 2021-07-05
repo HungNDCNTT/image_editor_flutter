@@ -208,89 +208,92 @@ class _ImageEditorProState extends State<ImageEditorPro> {
         ),
         body: Stack(
           children: [
-            Center(
-              child: Screenshot(
-                controller: screenshotController,
-                child: Container(
-                  margin: EdgeInsets.all(20),
-                  color: Colors.white,
-                  width: width.toDouble(),
-                  height: height.toDouble(),
-                  child: RepaintBoundary(
-                      key: globalKey,
-                      child: Stack(
-                        children: <Widget>[
-                          _image != null
-                              ? Image.file(
-                                  _image,
-                                  height: height.toDouble(),
-                                  width: width.toDouble(),
-                                  fit: BoxFit.cover,
-                                )
-                              : Container(),
-                          Container(
-                            child: GestureDetector(
-                                onPanUpdate: (DragUpdateDetails details) {
-                                  setState(() {
-                                    RenderBox object = context.findRenderObject();
-                                    Offset _localPosition = object.globalToLocal(details.globalPosition);
-                                    _points = new List.from(_points)..add(_localPosition);
-                                  });
-                                },
-                                onPanEnd: (DragEndDetails details) {
-                                  _points.add(null);
-                                },
-                                child: Signat()),
-                          ),
-                          Stack(
-                            children: multiwidget.asMap().entries.map((f) {
-                              return type[f.key] == 1
-                                  ? EmojiView(
-                                      left: offsets[f.key].dx,
-                                      top: offsets[f.key].dy,
-                                      ontap: () {
-                                        scaf.currentState.showBottomSheet((context) {
-                                          return Sliders(
-                                            size: f.key,
-                                            sizevalue: fontsize[f.key].toDouble(),
-                                          );
-                                        });
-                                      },
-                                      onpanupdate: (details) {
-                                        setState(() {
-                                          offsets[f.key] = Offset(offsets[f.key].dx + details.delta.dx, offsets[f.key].dy + details.delta.dy);
-                                        });
-                                      },
-                                      value: f.value.toString(),
-                                      fontsize: fontsize[f.key].toDouble(),
-                                      align: TextAlign.center,
-                                    )
-                                  : type[f.key] == 2
-                                      ? TextView(
-                                          left: offsets[f.key].dx,
-                                          top: offsets[f.key].dy,
-                                          ontap: () {
-                                            scaf.currentState.showBottomSheet((context) {
-                                              return Sliders(
-                                                size: f.key,
-                                                sizevalue: fontsize[f.key].toDouble(),
-                                              );
-                                            });
-                                          },
-                                          onpanupdate: (details) {
-                                            setState(() {
-                                              offsets[f.key] = Offset(offsets[f.key].dx + details.delta.dx, offsets[f.key].dy + details.delta.dy);
-                                            });
-                                          },
-                                          value: f.value.toString(),
-                                          fontsize: fontsize[f.key].toDouble(),
-                                          align: TextAlign.center,
-                                        )
-                                      : new Container();
-                            }).toList(),
-                          )
-                        ],
-                      )),
+            GestureDetector(
+              onTap: () => FocusScope.of(context).unfocus(),
+              child: Center(
+                child: Screenshot(
+                  controller: screenshotController,
+                  child: Container(
+                    margin: EdgeInsets.all(20),
+                    color: Colors.white,
+                    width: width.toDouble(),
+                    height: height.toDouble(),
+                    child: RepaintBoundary(
+                        key: globalKey,
+                        child: Stack(
+                          children: <Widget>[
+                            _image != null
+                                ? Image.file(
+                                    _image,
+                                    height: height.toDouble(),
+                                    width: width.toDouble(),
+                                    fit: BoxFit.cover,
+                                  )
+                                : Container(),
+                            Container(
+                              child: GestureDetector(
+                                  onPanUpdate: (DragUpdateDetails details) {
+                                    setState(() {
+                                      RenderBox object = context.findRenderObject();
+                                      Offset _localPosition = object.globalToLocal(details.globalPosition);
+                                      _points = new List.from(_points)..add(_localPosition);
+                                    });
+                                  },
+                                  onPanEnd: (DragEndDetails details) {
+                                    _points.add(null);
+                                  },
+                                  child: Signat()),
+                            ),
+                            Stack(
+                              children: multiwidget.asMap().entries.map((f) {
+                                return type[f.key] == 1
+                                    ? EmojiView(
+                                        left: offsets[f.key].dx,
+                                        top: offsets[f.key].dy,
+                                        ontap: () {
+                                          scaf.currentState.showBottomSheet((context) {
+                                            return Sliders(
+                                              size: f.key,
+                                              sizevalue: fontsize[f.key].toDouble(),
+                                            );
+                                          });
+                                        },
+                                        onpanupdate: (details) {
+                                          setState(() {
+                                            offsets[f.key] = Offset(offsets[f.key].dx + details.delta.dx, offsets[f.key].dy + details.delta.dy);
+                                          });
+                                        },
+                                        value: f.value.toString(),
+                                        fontsize: fontsize[f.key].toDouble(),
+                                        align: TextAlign.center,
+                                      )
+                                    : type[f.key] == 2
+                                        ? TextView(
+                                            left: offsets[f.key].dx,
+                                            top: offsets[f.key].dy,
+                                            ontap: () {
+                                              scaf.currentState.showBottomSheet((context) {
+                                                return Sliders(
+                                                  size: f.key,
+                                                  sizevalue: fontsize[f.key].toDouble(),
+                                                );
+                                              });
+                                            },
+                                            onpanupdate: (details) {
+                                              setState(() {
+                                                offsets[f.key] = Offset(offsets[f.key].dx + details.delta.dx, offsets[f.key].dy + details.delta.dy);
+                                              });
+                                            },
+                                            value: f.value.toString(),
+                                            fontsize: fontsize[f.key].toDouble(),
+                                            align: TextAlign.center,
+                                          )
+                                        : new Container();
+                              }).toList(),
+                            )
+                          ],
+                        )),
+                  ),
                 ),
               ),
             ),
@@ -361,7 +364,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                         multiwidget.clear();
                         howmuchwidgetis = 0;
                       },
-                      title: 'Eraser',
+                      title: 'Clear all',
                     ),
                     BottomBarContainer(
                       icons: Icons.photo,
@@ -401,46 +404,51 @@ class _ImageEditorProState extends State<ImageEditorPro> {
 
   void showDialogInputText() {
     showCupertinoDialog(
+        barrierDismissible: false,
         context: context,
         builder: (context) {
-          return AlertDialog(
-            title: Text("Input Text"),
-            actions: <Widget>[
-              FlatButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text("Cancle")),
-              FlatButton(
-                  onPressed: () {
-                    setState(() {
-                      textInput = inputTextController.text;
-                      type.add(2);
-                      fontsize.add(40);
-                      offsets.add(Offset.zero);
-                      multiwidget.add(textInput ?? '');
-                      howmuchwidgetis++;
-                    });
-                    inputTextController.clear();
-                    Navigator.pop(context);
-                  },
-                  child: Text("OK")),
-            ],
-            content: Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 0.5), borderRadius: BorderRadius.circular(10)),
-              child: TextFormField(
-                controller: inputTextController,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(top: 5),
-                  border: InputBorder.none,
+          return WillPopScope(
+            onWillPop: () async => false,
+            child: GestureDetector(
+              onTap: () => FocusScope.of(context).unfocus(),
+              child: AlertDialog(
+                title: Text("Input Text"),
+                actions: <Widget>[
+                  FlatButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text("Cancel")),
+                  FlatButton(
+                      onPressed: () {
+                        setState(() {
+                          textInput = inputTextController.text;
+                          type.add(2);
+                          fontsize.add(25);
+                          offsets.add(Offset.zero);
+                          multiwidget.add(textInput ?? '');
+                          howmuchwidgetis++;
+                        });
+                        inputTextController.clear();
+                        Navigator.pop(context);
+                      },
+                      child: Text("OK")),
+                ],
+                content: Container(
+                  width: 350,
+                  height: 60,
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 0.5), borderRadius: BorderRadius.circular(10)),
+                  child: TextField(
+                    controller: inputTextController,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(top: 5),
+                      border: InputBorder.none,
+                    ),
+                    keyboardType: TextInputType.multiline,
+                    maxLines: 3,
+                  ),
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    textInput = value;
-                  });
-                },
               ),
             ),
           );
@@ -448,83 +456,86 @@ class _ImageEditorProState extends State<ImageEditorPro> {
   }
 
   Widget buildInputText() {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            width: 500,
-            height: 230,
-            margin: EdgeInsets.only(left: (MediaQuery.of(context).size.width) / 5.5),
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 1), color: Colors.white),
-            child: Column(
-              children: [
-                Container(
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Text(
-                      'Input Text',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    )),
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 0.5), borderRadius: BorderRadius.circular(10)),
-                  child: TextFormField(
-                    controller: inputTextController,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.only(top: 5, left: 5),
-                      border: InputBorder.none,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: 500,
+              height: 230,
+              margin: EdgeInsets.only(left: (MediaQuery.of(context).size.width) / 5.5),
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 1), color: Colors.white),
+              child: Column(
+                children: [
+                  Container(
+                      padding: EdgeInsets.symmetric(vertical: 20),
+                      child: Text(
+                        'Input Text',
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      )),
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 0.5), borderRadius: BorderRadius.circular(10)),
+                    child: TextFormField(
+                      controller: inputTextController,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(top: 5, left: 5),
+                        border: InputBorder.none,
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          textInput = value;
+                        });
+                      },
                     ),
-                    onChanged: (value) {
-                      setState(() {
-                        textInput = value;
-                      });
-                    },
                   ),
-                ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              textInput = inputTextController.text;
-                              type.add(2);
-                              fontsize.add(40);
-                              offsets.add(Offset.zero);
-                              multiwidget.add(textInput ?? '');
-                              howmuchwidgetis++;
-                            });
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                            height: 70,
-                            decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 0.5)),
-                            child: Center(child: Text("OK", style: TextStyle(color: Colors.blue))),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                textInput = inputTextController.text;
+                                type.add(2);
+                                fontsize.add(40);
+                                offsets.add(Offset.zero);
+                                multiwidget.add(textInput ?? '');
+                                howmuchwidgetis++;
+                              });
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              height: 70,
+                              decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 0.5)),
+                              child: Center(child: Text("OK", style: TextStyle(color: Colors.blue))),
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () => Navigator.pop(context),
-                          child: Container(
-                            height: 70,
-                            child: Center(child: Text("Cancel", style: TextStyle(color: Colors.blue))),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () => Navigator.pop(context),
+                            child: Container(
+                              height: 70,
+                              child: Center(child: Text("Cancel", style: TextStyle(color: Colors.blue))),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
