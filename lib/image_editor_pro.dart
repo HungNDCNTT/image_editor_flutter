@@ -397,10 +397,56 @@ class _ImageEditorProState extends State<ImageEditorPro> {
   }
 
   void showDialogInputText() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => buildInputText(),
-    );
+    // showDialog(
+    //   context: context,
+    //   builder: (BuildContext context) => buildInputText(),
+    // );
+
+    showCupertinoDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Input Text"),
+            actions: <Widget>[
+              FlatButton(
+                  onPressed: () {
+                    setState(() {
+                      textInput = inputTextController.text;
+                      type.add(2);
+                      fontsize.add(40);
+                      offsets.add(Offset.zero);
+                      multiwidget.add(textInput ?? '');
+                      howmuchwidgetis++;
+                    });
+                    inputTextController.clear();
+                    Navigator.pop(context);
+                  },
+                  child:  Text("OK")),
+              FlatButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child:  Text("Cancle"))
+            ],
+            content: Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 0.5), borderRadius: BorderRadius.circular(10)),
+              child: TextFormField(
+                controller: inputTextController,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(top: 5, left: 5),
+                  border: InputBorder.none,
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    textInput = value;
+                  });
+                },
+              ),
+            ),
+          );
+        });
   }
 
   Widget buildInputText() {
@@ -588,7 +634,9 @@ class _SignatState extends State<Signat> {
   @override
   void initState() {
     super.initState();
-    _controller.addListener(() => print("Value changed"));
+    _controller.addListener((){
+
+    });
   }
 
   @override

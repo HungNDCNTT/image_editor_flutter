@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
             bottomBarColor: Colors.black,
             callBackImageFile: (file){
               Navigator.pop(context);
-              print('HungND abc $file');
+              print('File path:  $file');
         },
           );
         }
