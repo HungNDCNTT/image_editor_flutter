@@ -130,62 +130,62 @@ class _ImageEditorProState extends State<ImageEditorPro> {
             ),
           ),
           actions: <Widget>[
-            new IconButton(
-                icon: Icon(FontAwesomeIcons.boxes),
-                onPressed: () {
-                  showCupertinoDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: new Text("Select Height Width"),
-                          actions: <Widget>[
-                            FlatButton(
-                                onPressed: () {
-                                  setState(() {
-                                    height = int.parse(heightcontroler.text);
-                                    width = int.parse(widthcontroler.text);
-                                  });
-                                  heightcontroler.clear();
-                                  widthcontroler.clear();
-                                  Navigator.pop(context);
-                                },
-                                child: new Text("Done"))
-                          ],
-                          content: new SingleChildScrollView(
-                            child: new Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                new Text("Define Height"),
-                                new SizedBox(
-                                  height: 10,
-                                ),
-                                TextField(controller: heightcontroler, keyboardType: TextInputType.numberWithOptions(), decoration: InputDecoration(hintText: 'Height', contentPadding: EdgeInsets.only(left: 10), border: OutlineInputBorder())),
-                                new SizedBox(
-                                  height: 10,
-                                ),
-                                new Text("Define Width"),
-                                new SizedBox(
-                                  height: 10,
-                                ),
-                                TextField(controller: widthcontroler, keyboardType: TextInputType.numberWithOptions(), decoration: InputDecoration(hintText: 'Width', contentPadding: EdgeInsets.only(left: 10), border: OutlineInputBorder())),
-                              ],
-                            ),
-                          ),
-                        );
-                      });
-                }),
-            new IconButton(
-                icon: Icon(Icons.clear),
-                onPressed: () {
-                  _controller.points.clear();
-                  setState(() {});
-                }),
-            new IconButton(
-                icon: Icon(Icons.camera),
-                onPressed: () {
-                  bottomsheets();
-                }),
+            //  IconButton(
+            //     icon: Icon(FontAwesomeIcons.boxes),
+            //     onPressed: () {
+            //       showCupertinoDialog(
+            //           context: context,
+            //           builder: (context) {
+            //             return AlertDialog(
+            //               title: new Text("Select Height Width"),
+            //               actions: <Widget>[
+            //                 FlatButton(
+            //                     onPressed: () {
+            //                       setState(() {
+            //                         height = int.parse(heightcontroler.text);
+            //                         width = int.parse(widthcontroler.text);
+            //                       });
+            //                       heightcontroler.clear();
+            //                       widthcontroler.clear();
+            //                       Navigator.pop(context);
+            //                     },
+            //                     child: new Text("Done"))
+            //               ],
+            //               content: new SingleChildScrollView(
+            //                 child: new Column(
+            //                   mainAxisAlignment: MainAxisAlignment.start,
+            //                   crossAxisAlignment: CrossAxisAlignment.start,
+            //                   children: <Widget>[
+            //                     new Text("Define Height"),
+            //                     new SizedBox(
+            //                       height: 10,
+            //                     ),
+            //                     TextField(controller: heightcontroler, keyboardType: TextInputType.numberWithOptions(), decoration: InputDecoration(hintText: 'Height', contentPadding: EdgeInsets.only(left: 10), border: OutlineInputBorder())),
+            //                     new SizedBox(
+            //                       height: 10,
+            //                     ),
+            //                     new Text("Define Width"),
+            //                     new SizedBox(
+            //                       height: 10,
+            //                     ),
+            //                     TextField(controller: widthcontroler, keyboardType: TextInputType.numberWithOptions(), decoration: InputDecoration(hintText: 'Width', contentPadding: EdgeInsets.only(left: 10), border: OutlineInputBorder())),
+            //                   ],
+            //                 ),
+            //               ),
+            //             );
+            //           });
+            //     }),
+            // new IconButton(
+            //     icon: Icon(Icons.clear),
+            //     onPressed: () {
+            //       _controller.points.clear();
+            //       setState(() {});
+            //     }),
+            // new IconButton(
+            //     icon: Icon(Icons.camera),
+            //     onPressed: () {
+            //       bottomsheets();
+            //     }),
             new FlatButton(
                 child: Text("Done"),
                 textColor: Colors.white,
@@ -400,17 +400,17 @@ class _ImageEditorProState extends State<ImageEditorPro> {
   }
 
   void showDialogInputText() {
-    // showDialog(
-    //   context: context,
-    //   builder: (BuildContext context) => buildInputText(),
-    // );
-
     showCupertinoDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
             title: Text("Input Text"),
             actions: <Widget>[
+              FlatButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text("Cancle")),
               FlatButton(
                   onPressed: () {
                     setState(() {
@@ -425,11 +425,6 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                     Navigator.pop(context);
                   },
                   child: Text("OK")),
-              FlatButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text("Cancle"))
             ],
             content: Container(
               width: double.infinity,
