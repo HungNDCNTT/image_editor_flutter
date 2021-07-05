@@ -98,6 +98,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
     fontsize.clear();
     offsets.clear();
     multiwidget.clear();
+    inputTextController.clear();
     howmuchwidgetis = 0;
     // TODO: implement initState
     super.initState();
@@ -383,7 +384,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                             type.add(1);
                             fontsize.add(20);
                             offsets.add(Offset.zero);
-                            multiwidget.add(value);
+                            multiwidget.add(value ?? '');
                             howmuchwidgetis++;
                           }
                         });
@@ -452,7 +453,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                               type.add(2);
                               fontsize.add(40);
                               offsets.add(Offset.zero);
-                              multiwidget.add(textInput);
+                              multiwidget.add(textInput ?? '');
                               howmuchwidgetis++;
                             });
                             Navigator.pop(context);
